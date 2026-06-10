@@ -80,8 +80,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Deploy Backend (Continuous Delivery Manual Gate)
+      - name: Trigger Render Deployment Webhook
         run: |
-          echo "Manual gate passed / Approved!"
-          echo "Deploying the backend service..."
-          # Insert actual server deployment commands here (e.g. ssh, docker-compose pull, etc.)
+          echo "Manual gate passed / Approved! Triggering Render deployment..."
+          curl -f -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
